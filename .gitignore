@@ -52,3 +52,4 @@ Mkfile.old
 dkms.conf
 
 .vscode
+/data/pos_list copy.txt
