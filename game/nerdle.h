@@ -1,13 +1,9 @@
 #ifndef NERDLE_NERDLE_H
 #define NERDLE_NERDLE_H
 
-
-#include "solver/base.h"
-#include "solver/score.h"
-#include "solver/match.h"
 #include "solver/solver.h"
-
 #include "web/web.h"
+#include "browser/browser.h"
 
 bool getNerdleToday(char out_nerdle_today[NERDLE_WORD_LENGTH + 1]) {
     // Try simple decryption first

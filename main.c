@@ -42,6 +42,54 @@ void solveGame() {
     }
 }
 
+void solveGameBrowser() {
+    initDetectModule();
+    Word previous_situation_list[NERDLE_WORD_MAX_COUNT] = { 0 };
+    int previous_situation_list_count = 0;
+    long long current_score = 0;
+    char selected_word[NERDLE_WORD_LENGTH + 1];
+    State current_states[NERDLE_WORD_LENGTH];
+    //char state_input[INPUT_BUF_LENGTH] = { 0 }, state[NERDLE_WORD_LENGTH + 1] = { 0 };
+    Word new_word = { 0 };
+
+    printf("\nPlease open your browser tap, and press any key to start.");
+    system("pause");
+
+    for (int index = 0; index < NERDLE_WORD_MAX_COUNT; index++) {
+        printf("[next guess computing]\n");
+        bool succeeded = getNextGuess(previous_situation_list, previous_situation_list_count, selected_word, &current_score);
+
+        if (succeeded == false) {
+            printf("No hits found. Please check your input.");
+            break;
+        }
+        else {
+            new_word = formNotJudgedWord(selected_word);
+            
+            // send the word
+            sendAnswer(selected_word);
+
+            // get the state
+            scanFrameStates();
+            getLineStates(index, current_states);
+
+            // form the word
+            for (int i = 0; i < NERDLE_WORD_LENGTH; i ++) {
+                new_word.cells[i].state = current_states[i];
+            }
+
+            if (isWordProper(new_word)) {
+                printf("\n< Hurray!\n");
+                break;
+            }
+
+            previous_situation_list[index] = new_word;
+            previous_situation_list_count++;
+        }
+    }
+    releaseDetectModule();
+}
+
 long long solveTemplate(char template_input[INPUT_BUF_LENGTH], bool doPrint) {
     Word word_list[NERDLE_WORD_MAX_COUNT] = { 0 };
     int word_list_count = 0;
@@ -175,7 +223,7 @@ void bye() {
 
 void start() {
     system("cls");
-    printf("Welcome to Nerdle Solver by Frigus27!\nSelect mode.\n1. Play Nerdle\n2. Start Nerdle Solver (Manually)\n3. Watch the solver beats itself\n4. Play today's online game\n5. Auto-solve the today's online game\n6. Exit\n");
+    printf("Welcome to Nerdle Solver by Frigus27!\nSelect mode.\n1. Play Nerdle\n2. Start Nerdle Solver (Manually)\n3. Watch the solver beats itself\n4. Play today's online game\n5. Auto-solve today's online game\n6. Auto-solve today's online game IN BROWSER TAB\n7. Exit\n");
     switch (getch()) {
     case '1':
         playGame();
@@ -193,6 +241,9 @@ void start() {
         solveOnline();
         break;
     case '6':
+        solveGameBrowser();
+        break;
+    case '7':
         bye();
         break;
     default:
@@ -203,6 +254,7 @@ void start() {
 
 int main(int argc, char* argv[]) {
     initWordList();
+    initPos();
     if (argc == 1) {
         while (!exiting) {
             start();

@@ -19,8 +19,8 @@
 #define INPUT_BUF_LENGTH 128
 #define STATE_SUCCEEDED "PPPPPPPP"
 
-const char PathWordBank[] = "valid_expressions.txt";
-const char PathAnswerList[] = "answer_list.txt";
+const char PathWordBank[] = ".\\data\\valid_expressions.txt";
+const char PathAnswerList[] = ".\\data\\answer_list.txt";
 
 typedef enum {
     Excluded,
