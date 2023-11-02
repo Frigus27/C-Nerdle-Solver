@@ -111,7 +111,7 @@ Word judgeWord(char text_source[], char text_template[]) {
     return word;
 }
 
-
+// Obsolete function used in testing.
 int judgeWordIntoStateIndex(char text_source[], char text_template[]) {
     char text_source_copied[NERDLE_WORD_LENGTH + 1], text_template_copied[NERDLE_WORD_LENGTH + 1];
     strncpy(text_source_copied, text_source, NERDLE_WORD_LENGTH);

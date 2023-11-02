@@ -1,3 +1,7 @@
+// detect.h: detect the color in the browsers.
+//
+
+
 #ifndef NERDLE_BROWSER_DETECT_H
 #define NERDLE_BROWSER_DETECT_H
 

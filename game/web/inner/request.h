@@ -1,4 +1,5 @@
 // reference: https://blog.csdn.net/lanzhihui_10086/article/details/40685403
+// DO NOT USE THIS HEADER. THIS IS OBSOLETE.
 
 #ifndef NERDLE_WEB_REQUEST_H
 #define NERDLE_WEB_REQUEST_H
@@ -14,6 +15,7 @@
 //#include <inaddr.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "link.h"
 
 typedef struct in_addr in_addr;
@@ -61,7 +63,6 @@ bool httpGetNerdleEncryptedData(char out_encrypted_data[1024]) {
     serv.sin_port = htons(80);
     char ip[128] = { 0 };
     getIP(ip, NERDLEGAME_SITE);
-    printf("%s\n", ip);
     serv.sin_addr.S_un.S_addr = inet_addr(ip);
 
     //BING 70.37.92.127

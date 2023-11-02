@@ -1,3 +1,6 @@
+// click.h: handling clicking the browser
+//
+
 #ifndef NERDLE_BROWSER_CLICK_H
 #define NERDLE_BROWSER_CLICK_H
 
@@ -42,6 +45,10 @@ void activateWindow() {
     Sleep(250);
 }
 
+// send the answer computed to the browser. It will be splitted into three parts:
+// 1. Click an empty place to activate the browser;
+// 2. Click the number keys to enter the answer;
+// 3. Click the Enter key.
 void sendAnswer(char word_to_send[NERDLE_WORD_LENGTH + 1]) {
     int x, y;
     activateWindow();

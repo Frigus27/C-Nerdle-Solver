@@ -1,5 +1,4 @@
-// 有轮子不用天打雷霹
-// https://blog.csdn.net/qq_28584889/article/details/93845444
+// basic md5 algorithm.
 
 #ifndef NERDLE_WEB_MD5_H
 #define NERDLE_WEB_MD5_H

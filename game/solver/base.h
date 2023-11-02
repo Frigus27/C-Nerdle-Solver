@@ -1,3 +1,7 @@
+// base.h: constants and functions and structures to be used in the solver.
+//
+
+
 #ifndef NERDLE_SOLVER_BASE_H
 #define NERDLE_SOLVER_BASE_H
 
@@ -30,6 +34,7 @@ typedef enum {
     Invalid = -1
 } State;
 
+// state to chart converter (table)
 char _stateToChar[3] = { 'E', 'C', 'P' };
 
 typedef struct _Cell {
@@ -85,6 +90,9 @@ Word formWordByStateIndex(char text[], int state_index) {
     return new_word;
 }
 
+// Testers
+
+// test if a word is in the vocabulary list.
 bool isWordInBank(char word[NERDLE_WORD_LENGTH + 1]) {
     for (int i = 0; i < TOTAL_WORD_COUNT; i++) {
         if (strcmp(word, TotalWordList[i]) == 0) {
@@ -94,6 +102,7 @@ bool isWordInBank(char word[NERDLE_WORD_LENGTH + 1]) {
     return false;
 }
 
+// test if the word input is a valid
 bool isWordInputValid(char input[]) {
     if (strlen(input) != NERDLE_WORD_LENGTH) {
         return false;
@@ -104,6 +113,7 @@ bool isWordInputValid(char input[]) {
     return true;
 }
 
+// test if the state character input is valid.
 bool isStateCharacterValid(char stateInput) {
     if (stateInput == _stateToChar[0] || stateInput == _stateToChar[1] || stateInput == _stateToChar[2]) {
         return true;
@@ -111,6 +121,7 @@ bool isStateCharacterValid(char stateInput) {
     return false;
 }
 
+// test if the state input is valid.
 bool isStateInputValid(char input[]) {
     for (int i = 0; i < NERDLE_WORD_LENGTH; i++) {
         bool flag_valid = false;
@@ -127,6 +138,7 @@ bool isStateInputValid(char input[]) {
     return true;
 }
 
+// convert the state char to state type.
 State charToState(char c) {
     for (int i = Excluded; i <= Proper; i++) {
         if (_stateToChar[i] == c) {
@@ -136,19 +148,7 @@ State charToState(char c) {
     return (State)Invalid;
 }
 
-Word formNotJudgedWord(char str[]) {
-    Word word;
-    for (int i = 0; i < NERDLE_WORD_LENGTH; i ++) {
-        word.cells[i].state = NotJudged;
-        word.cells[i].symbol = str[i];
-    }
-    return word;
-}
-
-Word initWord() {
-    return formNotJudgedWord("        ");
-}
-
+// test if a word is in the "full-proper" state, i.e. the game is over successfully.
 bool isWordProper(Word word) {
     for (int i = 0; i < NERDLE_WORD_LENGTH; i ++) {
         if (word.cells[i].state != Proper) {
@@ -158,6 +158,26 @@ bool isWordProper(Word word) {
     return true;
 }
 
+// Basic functions used to form a word.
+
+// form a word type from a string.
+Word formNotJudgedWord(char str[]) {
+    Word word;
+    for (int i = 0; i < NERDLE_WORD_LENGTH; i ++) {
+        word.cells[i].state = NotJudged;
+        word.cells[i].symbol = str[i];
+    }
+    return word;
+}
+
+// init an empty word type.
+Word initWord() {
+    return formNotJudgedWord("        ");
+}
+
+// Other functions
+
+// function used to pick a template, i.e. the answer of a game.
 void pickTemplate(char out_template[]) {
     strcpy(out_template, TotalAnswerList[rand() % TOTAL_ANSWER_COUNT]);
 }

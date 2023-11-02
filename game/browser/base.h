@@ -1,3 +1,7 @@
+// base.h: Defining basic constants and elements which are used in operating the browser.
+//
+
+
 #ifndef NERDLE_BROWSER_BASE_H
 #define NERDLE_BROWSER_BASE_H
 

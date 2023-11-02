@@ -1,3 +1,5 @@
+// calculate the proper link of today's game.
+
 #ifndef NERDLE_WEB_LINK_H
 #define NERDLE_WEB_LINK_H
 

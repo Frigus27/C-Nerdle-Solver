@@ -1,3 +1,5 @@
+// CUI controls.
+
 #ifndef NERDLE_VISUAL_H
 #define NERDLE_VISUAL_H
 

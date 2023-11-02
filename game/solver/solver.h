@@ -5,9 +5,12 @@
 #include "score.h"
 #include "match.h"
 
+// The best startup of a game that is calculated before
 #define SOLVER_FIRST_WORD "5*8/10=4"
 #define SOLVER_FIRST_WORD_SCORE 8973989
 
+// search a proper word.
+// return false if the search failed.
 bool searchWord(char smaller_word_range[][NERDLE_WORD_LENGTH + 1], const int len, char out_result[], long long* out_score_max) {
     double current_entropy = 0;
     long long score_max = 0;
@@ -29,6 +32,8 @@ bool searchWord(char smaller_word_range[][NERDLE_WORD_LENGTH + 1], const int len
     return flag;
 }
 
+// get the next guess from the program.
+// the *only* interface that is recommended to use in the outer environment.
 bool getNextGuess(Word previous_guessed_feedback_list[NERDLE_WORD_MAX_COUNT], int list_length, char out_next_guess[NERDLE_WORD_LENGTH + 1], long long *out_next_guess_score) {
     assert(list_length >= 0);
     if (list_length > NERDLE_WORD_MAX_COUNT) {

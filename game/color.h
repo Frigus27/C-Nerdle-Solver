@@ -1,4 +1,4 @@
-// Only for windows
+// CUI colorful output for windows
 
 #ifndef NERDLE_SOLVER_COLOR_H
 #define NERDLE_SOLVER_COLOR_H

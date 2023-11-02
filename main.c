@@ -146,12 +146,6 @@ long long playTemplate(char template_input[INPUT_BUF_LENGTH], bool doPrint) {
                 break;
             }
 
-
-            //FILE *notstdout = fopen("1.log","w+");
-            //fprintf(notstdout, "%s", selected_word);
-            //fclose(notstdout);
-
-
             printf("  <-- This input does not compute!");
         }
 

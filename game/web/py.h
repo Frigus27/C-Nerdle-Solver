@@ -1,3 +1,6 @@
+// Get today's game answer with python.
+// This is not a part of the assignment. Just leave it for fun.
+
 #ifndef NERDLE_WEB_PY_H
 #define NERDLE_WEB_PY_H
 
